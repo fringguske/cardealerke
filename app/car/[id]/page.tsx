@@ -1,13 +1,10 @@
-import React from 'react';
+import BackButton from '../../components/BackButton';
 import Image from 'next/image';
 import { CarService } from '../../services/carService';
 import type { CarCardProps } from '../../components/CarCard';
-import BackButton from '../../components/BackButton';
 
 async function getCar(id: string): Promise<CarCardProps | null> {
   try {
-    // You may need to implement getCarById in your CarService
-    // For now, fetch all and find by id
     const cars = await CarService.getCars();
     return cars.find(car => car.id === id) || null;
   } catch {
@@ -52,4 +49,4 @@ export default async function Page({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
-} 
+}
