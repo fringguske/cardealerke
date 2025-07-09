@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Critical layout and grid styles moved from page.tsx for FOUC prevention */
+.landing-glassboard-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.landing-bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  filter: blur(1px) brightness(1.18);
+  pointer-events: none;
+  user-select: none;
+}
+.landing-glassboard-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 24px;
+  padding: 2.5rem 2rem 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.landing-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: -1px;
+  color: #111;
+}
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+@media (max-width: 900px) {
+  .car-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .car-grid {
+    grid-template-columns: 1fr;
+  }
+  .landing-glassboard-content {
+    padding: 1.5rem 0.5rem 2rem 0.5rem;
+  }
+}
+
+/* Car Details Page Styles */
+.car-details-page {
+  width: 100%;
+  max-width: 900px;
+  margin: 2.5rem auto 0 auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+}
+.back-btn {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.2s, color 0.2s;
+}
+.back-btn:hover {
+  background: #fff;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+}
+.car-details-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.car-details-image-wrapper {
+  flex: 1 1 180px;
+  max-width: 400px;
+  min-width: 180px;
+  background: #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.car-details-info {
+  font-size: 1.1rem;
+  color: #23272f;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.car-details-info h2 {
+  margin-bottom: 0.7rem;
+  font-size: 2rem;
+  color: #1d1d1d;
+}
