@@ -4,10 +4,6 @@ import { CarService } from '../../services/carService';
 import type { CarCardProps } from '../../components/CarCard';
 import BackButton from '../../components/BackButton';
 
-interface CarDetailsPageProps {
-  params: { id: string };
-}
-
 async function getCar(id: string): Promise<CarCardProps | null> {
   try {
     // You may need to implement getCarById in your CarService
@@ -19,7 +15,7 @@ async function getCar(id: string): Promise<CarCardProps | null> {
   }
 }
 
-const CarDetailsPage = async ({ params }: CarDetailsPageProps) => {
+export default async function Page({ params }: { params: { id: string } }) {
   const car = await getCar(params.id);
   if (!car) {
     return <div style={{ padding: '2rem', textAlign: 'center' }}>Car not found.</div>;
@@ -56,6 +52,4 @@ const CarDetailsPage = async ({ params }: CarDetailsPageProps) => {
       </div>
     </div>
   );
-};
-
-export default CarDetailsPage; 
+} 
